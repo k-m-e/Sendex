@@ -17,13 +17,13 @@ Sendex.grid.Newsletters = function(config) {
 		]
 		,tbar: [{
 			text: _('sendex_btn_create')
-			,handler: this.createNewsletter
+			,handler: this.createItem
 			,scope: this
 		}]
 		,listeners: {
 			rowDblClick: function(grid, rowIndex, e) {
 				var row = grid.store.getAt(rowIndex);
-				this.updateNewsletter(grid, e, row);
+				this.updateItem(grid, e, row);
 			}
 		}
 	});
@@ -36,30 +36,30 @@ Ext.extend(Sendex.grid.Newsletters,MODx.grid.Grid,{
 		var m = [];
 		m.push({
 			text: _('sendex_newsletter_update')
-			,handler: this.updateNewsletter
+			,handler: this.updateItem
 		});
 		m.push('-');
 		m.push({
 			text: _('sendex_newsletter_remove')
-			,handler: this.removeNewsletter
+			,handler: this.removeItem
 		});
-		this.addContextMenuNewsletter(m);
+		this.addContextMenuItem(m);
 	}
 
-	,createNewsletter: function(btn,e) {
-		if (!this.windows.createNewsletter) {
-			this.windows.createNewsletter = MODx.load({
+	,createItem: function(btn,e) {
+		if (!this.windows.createItem) {
+			this.windows.createItem = MODx.load({
 				xtype: 'sendex-window-newsletter-create'
 				,listeners: {
 					'success': {fn:function() { this.refresh(); },scope:this}
 				}
 			});
 		}
-		this.windows.createNewsletter.fp.getForm().reset();
-		this.windows.createNewsletter.show(e.target);
+		this.windows.createItem.fp.getForm().reset();
+		this.windows.createItem.show(e.target);
 	}
 
-	,updateNewsletter: function(btn,e,row) {
+	,updateItem: function(btn,e,row) {
 		if (typeof(row) != 'undefined') {this.menu.record = row.data;}
 		var id = this.menu.record.id;
 
@@ -71,8 +71,8 @@ Ext.extend(Sendex.grid.Newsletters,MODx.grid.Grid,{
 			}
 			,listeners: {
 				success: {fn:function(r) {
-					if (!this.windows.updateNewsletter) {
-						this.windows.updateNewsletter = MODx.load({
+					if (!this.windows.updateItem) {
+						this.windows.updateItem = MODx.load({
 							xtype: 'sendex-window-newsletter-update'
 							,record: r
 							,listeners: {
@@ -80,15 +80,15 @@ Ext.extend(Sendex.grid.Newsletters,MODx.grid.Grid,{
 							}
 						});
 					}
-					this.windows.updateNewsletter.fp.getForm().reset();
-					this.windows.updateNewsletter.fp.getForm().setValues(r.object);
-					this.windows.updateNewsletter.show(e.target);
+					this.windows.updateItem.fp.getForm().reset();
+					this.windows.updateItem.fp.getForm().setValues(r.object);
+					this.windows.updateItem.show(e.target);
 				},scope:this}
 			}
 		});
 	}
 
-	,removeNewsletter: function(btn,e) {
+	,removeItem: function(btn,e) {
 		if (!this.menu.record) return false;
 
 		MODx.msg.confirm({
@@ -110,7 +110,7 @@ Ext.reg('sendex-grid-newsletters',Sendex.grid.Newsletters);
 
 
 
-Sendex.window.CreateNewsletter = function(config) {
+Sendex.window.CreateItem = function(config) {
 	config = config || {};
 	this.ident = config.ident || 'mecnewsletter'+Ext.id();
 	Ext.applyIf(config,{
@@ -126,13 +126,13 @@ Sendex.window.CreateNewsletter = function(config) {
 		]
 		,keys: [{key: Ext.EventObject.ENTER,shift: true,fn: function() {this.submit() },scope: this}]
 	});
-	Sendex.window.CreateNewsletter.superclass.constructor.call(this,config);
+	Sendex.window.CreateItem.superclass.constructor.call(this,config);
 };
-Ext.extend(Sendex.window.CreateNewsletter,MODx.Window);
-Ext.reg('sendex-window-newsletter-create',Sendex.window.CreateNewsletter);
+Ext.extend(Sendex.window.CreateItem,MODx.Window);
+Ext.reg('sendex-window-newsletter-create',Sendex.window.CreateItem);
 
 
-Sendex.window.UpdateNewsletter = function(config) {
+Sendex.window.UpdateItem = function(config) {
 	config = config || {};
 	this.ident = config.ident || 'meunewsletter'+Ext.id();
 	Ext.applyIf(config,{
@@ -149,7 +149,7 @@ Sendex.window.UpdateNewsletter = function(config) {
 		]
 		,keys: [{key: Ext.EventObject.ENTER,shift: true,fn: function() {this.submit() },scope: this}]
 	});
-	Sendex.window.UpdateNewsletter.superclass.constructor.call(this,config);
+	Sendex.window.UpdateItem.superclass.constructor.call(this,config);
 };
-Ext.extend(Sendex.window.UpdateNewsletter,MODx.Window);
-Ext.reg('sendex-window-newsletter-update',Sendex.window.UpdateNewsletter);
+Ext.extend(Sendex.window.UpdateItem,MODx.Window);
+Ext.reg('sendex-window-newsletter-update',Sendex.window.UpdateItem);
