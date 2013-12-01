@@ -15,6 +15,7 @@ $_lang['sendex_newsletter_err_remove'] = 'An error occurred while trying to remo
 $_lang['sendex_newsletter_err_save'] = 'An error occurred while trying to save the Newsletter.';
 $_lang['sendex_newsletter_remove'] = 'Remove Newsletter';
 $_lang['sendex_newsletter_remove_confirm'] = 'Are you sure you want to remove this Newsletter?';
+$_lang['sendex_newsletter_create'] = 'Create newsletter';
 $_lang['sendex_newsletter_update'] = 'Update Newsletter';
 $_lang['sendex_newsletter_id'] = 'id';
 $_lang['sendex_newsletter_name'] = 'Title';

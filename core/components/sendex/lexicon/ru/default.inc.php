@@ -15,6 +15,7 @@ $_lang['sendex_newsletter_err_remove'] = 'Ошибка при удалении �
 $_lang['sendex_newsletter_err_save'] = 'Ошибка при сохранении Подписки.';
 $_lang['sendex_newsletter_remove'] = 'Удалить Подписку';
 $_lang['sendex_newsletter_remove_confirm'] = 'Вы уверены, что хотите удалить эту Подписку?';
+$_lang['sendex_newsletter_create'] = 'Создать подписку';
 $_lang['sendex_newsletter_update'] = 'Изменить Подписку';
 $_lang['sendex_newsletter_id'] = 'id';
 $_lang['sendex_newsletter_name'] = 'Название';
